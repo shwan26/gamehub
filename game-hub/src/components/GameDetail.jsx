@@ -22,6 +22,7 @@ const GameDetail = () => {
           <p>{game.description}</p>
           <h4>Price: ${game.price.toFixed(2)}</h4>
           <a href={`/cart`} className="btn btn-primary mt-3">Add to Cart</a>
+          <a href={`/transaction/${id}`} className="btn btn-primary mt-3">Buy Now</a>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ const App = () => {
             <Route path="game/:id" element={<GameDetail />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="library" element={<LibraryPage />} />
-            <Route path="transaction" element={<TransactionPage />} />
+            <Route path="transaction/:id" element={<TransactionPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Routes>
         </main>
