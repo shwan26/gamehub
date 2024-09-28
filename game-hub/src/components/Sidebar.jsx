@@ -1,16 +1,17 @@
-// src/components/Sidebar.jsx
 import React from 'react';
 
 const Sidebar = () => {
-    return (
-        <div className="sidebar">
-            <h2>GameHub</h2>
-            <ul>
-                <li><a href="#">Store</a></li>
-                <li><a href="#">Library</a></li>
-            </ul>
-        </div>
-    );
+  return (
+    <aside className="bg-light p-4" >
+      <h2 className="text-center">Categories</h2>
+      <ul className="list-group">
+        <li className="list-group-item">Action</li>
+        <li className="list-group-item">Adventure</li>
+        <li className="list-group-item">RPG</li>
+        <li className="list-group-item">Sports</li>
+      </ul>
+    </aside>
+  );
 };
 
 export default Sidebar;
