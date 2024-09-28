@@ -6,6 +6,7 @@ import Store from './pages/index';
 import CartPage from './pages/cart';
 import LibraryPage from './pages/library';
 import TransactionPage from './pages/transaction';
+import ProfilePage from './pages/profile';
 import GameDetail from './components/GameDetail'; // Ensure this is the correct path
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
     <Router>
       <Header />
       <div style={{ display: 'flex', marginTop: '20px' }}>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <main style={{ flexGrow: 1, padding: '20px' }}>
           <Routes>
             <Route path="/" element={<Store />} />
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="cart" element={<CartPage />} />
             <Route path="library" element={<LibraryPage />} />
             <Route path="transaction" element={<TransactionPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Routes>
         </main>
       </div>
