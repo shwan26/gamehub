@@ -8,7 +8,7 @@ import LibraryPage from './pages/library';
 import TransactionPage from './pages/transaction';
 import ProfilePage from './pages/profile';
 import GameDetail from './components/GameDetail'; // Ensure this is the correct path
-
+import CartComponent from './components/CartComponent';
 const App = () => {
   return (
     <Router>
@@ -23,6 +23,7 @@ const App = () => {
             <Route path="library" element={<LibraryPage />} />
             <Route path="transaction/:id" element={<TransactionPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path = "CartComponent" element={<CartComponent/>}/>
           </Routes>
         </main>
       </div>

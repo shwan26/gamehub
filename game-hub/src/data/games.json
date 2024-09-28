@@ -15,24 +15,31 @@
     },
     {
       "id": 3,
-      "title": "Game Three",
-      "description": "Description for game three.",
-      "price": 39.99,
-      "image": "/assets/game3.png"
+      "title": "FC25",
+      "description": "Build your ultimate team to make your dream team",
+      "price": 69.99,
+      "image": "https://assets.goal.com/images/v3/blt178d34156522b281/GOAL%20-%20Blank%20WEB%20-%20Facebook%20-%202024-07-17T151013.046.jpg?auto=webp&format=pjpg&width=3840&quality=60"
     },
     {
       "id": 4,
-      "title": "Game Four",
-      "description": "Description for game four.",
+      "title": "Ghost of Tsushima",
+      "description": "Ghost of Tsushima is an action game set in feudal Japan.Player take the role of Jin Sakai who is Japanese Samurai.",
       "price": 49.99,
-      "image": "/assets/game4.png"
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxNvYmDfb8QFD.png"
     },
     {
       "id": 5,
-      "title": "Game Five",
-      "description": "Description for game five.",
+      "title": "It Take two",
+      "description": "Play as the clashing couple cody and May.Two humans turned into dolls by a magic spell.",
       "price": 59.99,
-      "image": "/assets/game5.png"
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202012/0815/0Xqi1LgRoEtJ5zlFprpd54Vu.png"
+    },
+    {
+      "id": 6,
+      "title": "Assasin Creed:Brotherhood",
+      "description": "Play as a assasin to attack the enemies and have to prevent all of the man.",
+      "price": 59.99,
+      "image": "https://cdn2.unrealengine.com/ac2-gamename-store-landscape-2560x1440-2560x1440-aa944fa0e8c6.jpg"
     }
   ]
   
