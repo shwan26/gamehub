@@ -1,8 +1,12 @@
 import React from 'react';
-import Transaction from '../components/Transaction';
 
 const TransactionPage = () => {
-  return <Transaction />;
+  return (
+    <div>
+      <h1>Transaction</h1>
+      <p>Thank you for your purchase!</p>
+    </div>
+  );
 };
 
 export default TransactionPage;
