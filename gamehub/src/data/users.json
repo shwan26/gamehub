@@ -2,9 +2,8 @@
   {
     "id": 1,
     "username": "user1",
-    "cart": [],
+    "cart": [2,5],
     "library": [
-      9,
       1,
       3
     ],
