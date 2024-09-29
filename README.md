@@ -10,13 +10,13 @@ Project name - GameHub
 
 Here is a screenshot of the application:
 
-![Home Page](screenshot/HomePage.jpg)
-![Library Page](screenshot/Library.jpg)
-![Cart Page](screenshot/Cart.jpg)
-![Profile Page](screenshot/Profile.jpg)
-![Transaction History Page](screenshot/Transaction.jpg)
-![Transaction Page](screenshot/Transaction.jpg)
-![Game Detail Page](screenshot/GameDetail.jpg)
+![Home Page](screenshots/HomePage.jpg)
+![Library Page](screenshots/Library.jpg)
+![Cart Page](screenshots/Cart.jpg)
+![Profile Page](screenshots/Profile.jpg)
+![Transaction History Page](screenshots/Transaction.jpg)
+![Transaction Page](screenshots/Transaction.jpg)
+![Game Detail Page](screenshots/GameDetail.jpg)
 
 
 
