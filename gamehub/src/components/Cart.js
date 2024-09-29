@@ -1,33 +1,50 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import CartContext from '../context/CartContext';
 
-export default function Cart() {
-  const [cartItems, setCartItems] = useState([]);
+const Cart = () => {
+  const { cart, setCart } = useContext(CartContext);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Load cart items from local storage or API
-    const items = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartItems(items);
+    const fetchUsers = async () => {
+      const response = await fetch('/api/users');
+      const data = await response.json();
+      setUsers(data);
+    };
+    fetchUsers();
   }, []);
 
-  const removeItem = (id) => {
-    const updatedItems = cartItems.filter(item => item.id !== id);
-    setCartItems(updatedItems);
-    localStorage.setItem('cart', JSON.stringify(updatedItems));
+  const updateCart = async (userId, gameId) => {
+    const user = users.find(user => user.id === userId);
+    const updatedCart = [...user.cart, gameId];
+
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ cart: updatedCart }),
+    });
+
+    if (response.ok) {
+      const updatedUser = await response.json();
+      setCart(updatedUser.cart);
+    }
   };
 
   return (
     <div>
-      <h2>Your Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        cartItems.map(item => (
-          <div key={item.id}>
-            <h3>{item.title}</h3>
-            <button onClick={() => removeItem(item.id)}>Remove</button>
-          </div>
-        ))
-      )}
+      <h1>Your Cart</h1>
+      {cart.map(gameId => (
+        <div key={gameId}>
+          <p>Game ID: {gameId}</p>
+          <button onClick={() => updateCart(1, gameId)}>Remove from Cart</button> {/* Assuming user ID is 1 */}
+        </div>
+      ))}
     </div>
   );
-}
+};
+
+export default Cart;
+
+// done

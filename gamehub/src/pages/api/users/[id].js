@@ -1,53 +1,47 @@
-// src/pages/api/users/[id].js
 import fs from 'fs';
 import path from 'path';
 
-export default async function handler(req, res) {
+const usersFilePath = path.join(process.cwd(), 'src', 'data', 'users.json');
+
+export default function handler(req, res) {
   const { id } = req.query;
-  const usersFilePath = path.join(process.cwd(), 'src', 'data', 'users.json');
 
-  if (req.method === 'GET') {
-    try {
-      // Read the users.json file
-      const usersData = fs.readFileSync(usersFilePath);
-      const users = JSON.parse(usersData);
-      const user = users.find(user => user.id === parseInt(id));
+  const usersData = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+  const userIndex = usersData.findIndex(user => user.id === parseInt(id));
 
-      if (user) {
-        return res.status(200).json(user);
+  switch (req.method) {
+    case 'GET':
+      if (userIndex >= 0) {
+        res.status(200).json(usersData[userIndex]);
       } else {
-        return res.status(404).json({ message: 'User not found' });
+        res.status(404).json({ message: 'User not found' });
       }
-    } catch (error) {
-      return res.status(500).json({ message: 'Error reading user data', error: error.message });
-    }
-  }
+      break;
 
-  if (req.method === 'PUT') {
-    try {
-      // Read the users.json file
-      const usersData = fs.readFileSync(usersFilePath);
-      const users = JSON.parse(usersData);
-
-      // Find the user by id
-      const userIndex = users.findIndex(user => user.id === parseInt(id));
-      if (userIndex === -1) {
-        return res.status(404).json({ message: 'User not found' });
+    case 'PUT':
+      if (userIndex >= 0) {
+        usersData[userIndex] = { ...usersData[userIndex], ...req.body };
+        fs.writeFileSync(usersFilePath, JSON.stringify(usersData, null, 2));
+        res.status(200).json(usersData[userIndex]);
+      } else {
+        res.status(404).json({ message: 'User not found' });
       }
+      break;
 
-      // Update the user data with the data from the request body
-      users[userIndex] = { ...users[userIndex], ...req.body };
+    case 'DELETE':
+      if (userIndex >= 0) {
+        const deletedUser = usersData.splice(userIndex, 1);
+        fs.writeFileSync(usersFilePath, JSON.stringify(usersData, null, 2));
+        res.status(200).json(deletedUser);
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+      break;
 
-      // Write the updated users.json file back to the file system
-      fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
-
-      return res.status(200).json(users[userIndex]);
-    } catch (error) {
-      return res.status(500).json({ message: 'Error updating user data', error: error.message });
-    }
+    default:
+      res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-
-  // Handle any other HTTP method
-  res.setHeader('Allow', ['GET', 'PUT']);
-  return res.status(405).end(`Method ${req.method} Not Allowed`);
 }
+
+// done

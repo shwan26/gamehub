@@ -1,29 +1,31 @@
-import Header from '../components/Header';
-import GameCard from '../components/GameCard';
 import { useEffect, useState } from 'react';
+import GameCard from '../components/GameCard';
+import Header from '../components/Header';
 
-export default function Store() {
+const Home = () => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
     const fetchGames = async () => {
-      const res = await fetch('/api/games');
-      const data = await res.json();
+      const response = await fetch('/api/games');
+      const data = await response.json();
       setGames(data);
     };
-
     fetchGames();
   }, []);
 
   return (
     <div>
-      <Header />
-      <h1>Game Store</h1>
-      <div className="game-grid">
+      <Header /> {/* Add the Header component here */}
+      <h1>Welcome to the Game Hub!</h1>
+      <div className="game-list">
         {games.map(game => (
           <GameCard key={game.id} game={game} />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default Home;
+// done

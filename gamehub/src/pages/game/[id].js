@@ -1,87 +1,72 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import Header from '../../components/Header';
+import { useEffect, useState } from 'react';
 
-export default function GameDetail() {
+const GameDetail = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id } = router.query; // Get the game ID from the URL
   const [game, setGame] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); // To store user data
 
   useEffect(() => {
-    const fetchGameData = async () => {
+    const fetchGameDetail = async () => {
       if (id) {
-        // Fetch the game data
-        const res = await fetch(`/api/games/${id}`);
-        const data = await res.json();
+        const response = await fetch(`/api/games/${id}`);
+        const data = await response.json();
         setGame(data);
       }
     };
 
     const fetchUserData = async () => {
-      const userId = 1; // Example user ID, update this based on actual logic
-
-      // Fetch user data
-      const userResponse = await fetch(`/api/users/${userId}`);
-      const userData = await userResponse.json();
-      setUser(userData);
+      const response = await fetch(`/api/users/1`); // Adjust the user ID as needed
+      const data = await response.json();
+      setUser(data);
     };
 
-    fetchGameData();
+    fetchGameDetail();
     fetchUserData();
   }, [id]);
 
-  const handleBuyNow = async () => {
-    if (user && game) {
-      // Check if the game is already in the user's library
-      if (user.library.includes(parseInt(id))) {
-        alert('You already own this game.');
-
-        // Redirect back to the store/homepage
-        router.push('/');
-      } else {
-        // Proceed to transaction if the game is not in the library
-        router.push(`/transaction?gameId=${id}`);
-      }
-    }
-  };
-
   const handleAddToCart = async () => {
-    const userId = 1; // Example user ID, adjust this as needed
+    if (user) {
+      // Check if the game is already in the cart
+      if (user.cart.includes(game.id)) {
+        alert("This game is already in your cart.");
+        return;
+      }
 
-    // Fetch the user data
-    const response = await fetch(`/api/users/${userId}`);
-    const user = await response.json();
+      const updatedCart = [...user.cart, game.id];
 
-    // Add the game ID to the user's cart if it's not already in it
-    if (!user.cart.includes(parseInt(id))) {
-      user.cart.push(parseInt(id)); // Add game ID to cart
-
-      // Update users.json with the new cart
-      await fetch(`/api/users/${userId}`, {
+      await fetch(`/api/users/1`, { // Adjust the user ID as needed
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify({ cart: updatedCart }),
       });
 
-      alert('Game added to cart!');
-    } else {
-      alert('Game is already in the cart');
+      // Redirect to cart page
+      router.push('/cart');
     }
   };
 
-  if (!game || !user) return <div>Loading...</div>;
+  const handleBuyNow = async () => {
+    // Handle buy now action (You may want to implement transaction logic here)
+    router.push('/transaction');
+  };
+
+  if (!game) return <p>Loading...</p>; // Loading state
 
   return (
     <div>
-      <Header /> {/* Add Header */}
       <h1>{game.title}</h1>
       <p>{game.description}</p>
-      <p>${game.price}</p>
+      <p>Price: ${game.price}</p>
+      <p>Release Date: {game.releaseDate}</p>
+
       <button onClick={handleAddToCart}>Add to Cart</button>
       <button onClick={handleBuyNow}>Buy Now</button>
     </div>
   );
-}
+};
+
+export default GameDetail;

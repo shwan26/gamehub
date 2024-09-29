@@ -1,67 +1,39 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Header from '../components/Header'; // Import Header
+import { useEffect, useState, useContext } from 'react';
+import CartContext from '../context/CartContext';
 
 const Library = () => {
-  const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [games, setGames] = useState([]);
+  const { cart } = useContext(CartContext);
+  const [library, setLibrary] = useState([]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userId = 1; // Example user ID; adjust based on your logic
-      const response = await fetch(`/api/users/${userId}`);
+    const fetchLibrary = async () => {
+      const response = await fetch('/api/users/1'); // Fetch user with ID 1
       const userData = await response.json();
-      setUser(userData);
+      const libraryGames = userData.library; // Assuming the library is stored in user data
 
-      // Fetch the games for the library based on user's library
-      const gamePromises = userData.library.map(gameId =>
-        fetch(`/api/games/${gameId}`).then(res => res.json())
-      );
-      const gameData = await Promise.all(gamePromises);
-      setGames(gameData);
+      // Fetch game details for the library
+      const gamesResponses = await Promise.all(libraryGames.map(gameId => fetch(`/api/games/${gameId}`)));
+      const gamesData = await Promise.all(gamesResponses.map(res => res.json()));
+      setLibrary(gamesData);
     };
-
-    fetchUserData();
+    fetchLibrary();
   }, []);
-
-  const handleDeleteGame = async (gameId) => {
-    const userId = 1; // Example user ID; adjust this based on your logic
-
-    // Update the user's library in users.json
-    const updatedLibrary = user.library.filter(id => id !== gameId);
-
-    const response = await fetch(`/api/users/${userId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...user, library: updatedLibrary }),
-    });
-
-    if (response.ok) {
-      alert('Game removed from library!');
-      setGames(games.filter(game => game.id !== gameId)); // Remove the game from local state
-    } else {
-      alert('Failed to remove game from library.');
-    }
-  };
-
-  if (!user) return <div>Loading...</div>;
 
   return (
     <div>
-      <Header /> {/* Add Header */}
       <h1>Your Library</h1>
-      {games.map((game) => (
-        <div key={game.id} className="game-card">
-          <h2>{game.title}</h2>
-          <button onClick={() => handleDeleteGame(game.id)}>Delete</button>
-        </div>
-      ))}
-      {games.length === 0 && <p>Your library is empty.</p>}
+      <div className="library-list">
+        {library.map(game => (
+          <div key={game.id}>
+            <h2>{game.title}</h2>
+            <p>{game.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export default Library;
+
+// done

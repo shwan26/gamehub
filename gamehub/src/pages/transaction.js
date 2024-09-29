@@ -1,89 +1,86 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useCart } from '../context/CartContext'; // Adjust based on your context path
 
 const Transaction = () => {
   const router = useRouter();
-  const { cart = [] } = useCart(); // Use default empty array if cart is undefined
   const [user, setUser] = useState(null);
-  const userId = 1; // Example user ID; adjust as necessary
+  const [transactionGames, setTransactionGames] = useState([]); // Array to store games for the transaction
+  const [transactionSuccess, setTransactionSuccess] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const userData = await response.json();
-      setUser(userData);
+      const response = await fetch(`/api/users/1`); // Adjust the user ID as needed
+      const data = await response.json();
+      setUser(data);
+      fetchTransactionGames(data.cart); // Fetch games in the user's cart
+    };
+
+    const fetchTransactionGames = async (cartIds) => {
+      const responses = await Promise.all(
+        cartIds.map(id => fetch(`/api/games/${id}`))
+      );
+      const gamesData = await Promise.all(responses.map(res => res.json()));
+      setTransactionGames(gamesData);
     };
 
     fetchUserData();
-  }, [userId]);
+  }, []);
 
-  const handleConfirmPurchase = async () => {
-    if (!user) {
-      alert('User data is not loaded.'); 
-      return;
+  const handleConfirmPayment = async () => {
+    if (user) {
+      // Check if the games are already in the user's library
+      const gamesAlreadyInLibrary = transactionGames.filter(game => 
+        user.library.includes(game.id)
+      );
+
+      if (gamesAlreadyInLibrary.length > 0) {
+        alert("One or more games are already in your library.");
+        return;
+      }
+
+      // Update user's library
+      const updatedLibrary = [...user.library, ...transactionGames.map(game => game.id)];
+
+      // Update users.json
+      await fetch(`/api/users/1`, { // Adjust the user ID as needed
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ library: updatedLibrary }),
+      });
+
+      // Add transaction to transactions.json
+      await fetch(`/api/transactions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user.id, // Assuming user object has an id
+          gameIds: transactionGames.map(game => game.id),
+          date: new Date().toISOString(),
+        }),
+      });
+
+      setTransactionSuccess(true);
+      alert("Payment confirmed! Games have been added to your library.");
+      router.push('/library'); // Redirect to library page after confirmation
     }
-
-    // Step 1: Update user library
-    const updatedLibrary = [...new Set([...user.library, ...cart])]; // Add cart items to library without duplicates
-
-    // Update users.json
-    const userUpdateResponse = await fetch(`/api/users/${userId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...user, library: updatedLibrary, cart: [] }), // Clear the cart after purchase
-    });
-
-    if (!userUpdateResponse.ok) {
-      const errorMessage = await userUpdateResponse.text();
-      alert(`Failed to update user library: ${errorMessage}`);
-      return;
-    }
-
-    // Step 2: Prepare transaction data
-    const transactionData = {
-      userId: userId,
-      gameIds: cart, // Include all game IDs from the cart
-      date: new Date().toISOString(),
-    };
-
-    // Update transactions.json
-    const transactionResponse = await fetch('/api/transactions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(transactionData),
-    });
-
-    if (!transactionResponse.ok) {
-      const errorMessage = await transactionResponse.text();
-      alert(`Failed to record transaction: ${errorMessage}`);
-      return;
-    }
-
-    alert('Purchase successful!');
-    router.push('/library'); // Redirect to library page
   };
 
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <p>Loading...</p>; // Loading state
 
   return (
     <div>
-      <h1>Transaction Page</h1>
-      <h2>Your Cart</h2>
-      {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        cart.map(gameId => (
-          <div key={gameId}>
-            <p>Game ID: {gameId}</p>
-          </div>
-        ))
-      )}
-      <button onClick={handleConfirmPurchase}>Confirm Purchase</button>
+      <h1>Confirm Your Transaction</h1>
+      <h2>Games:</h2>
+      <ul>
+        {transactionGames.map(game => (
+          <li key={game.id}>{game.title} - ${game.price}</li>
+        ))}
+      </ul>
+      <button onClick={handleConfirmPayment}>Confirm Payment</button>
     </div>
   );
 };

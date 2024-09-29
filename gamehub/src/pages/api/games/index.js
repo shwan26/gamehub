@@ -1,17 +1,24 @@
 import fs from 'fs';
 import path from 'path';
 
-const filePath = path.join(process.cwd(), 'src/data/games.json');
+const gamesFilePath = path.join(process.cwd(), 'src', 'data', 'games.json');
 
 export default function handler(req, res) {
-  if (req.method === 'GET') {
-    const games = JSON.parse(fs.readFileSync(filePath));
-    res.status(200).json(games);
-  } else if (req.method === 'POST') {
-    const newGame = req.body;
-    const games = JSON.parse(fs.readFileSync(filePath));
-    games.push(newGame);
-    fs.writeFileSync(filePath, JSON.stringify(games));
-    res.status(201).json(newGame);
+  switch (req.method) {
+    case 'GET':
+      const gamesData = JSON.parse(fs.readFileSync(gamesFilePath, 'utf8'));
+      res.status(200).json(gamesData);
+      break;
+    case 'POST':
+      const newGame = req.body;
+      const existingGames = JSON.parse(fs.readFileSync(gamesFilePath, 'utf8'));
+      existingGames.push(newGame);
+      fs.writeFileSync(gamesFilePath, JSON.stringify(existingGames, null, 2));
+      res.status(201).json(newGame);
+      break;
+    default:
+      res.setHeader('Allow', ['GET', 'POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+// done

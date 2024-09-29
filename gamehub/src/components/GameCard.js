@@ -1,14 +1,17 @@
+import React from 'react';
 import Link from 'next/link';
 
-export default function GameCard({ game }) {
+const GameCard = ({ game }) => {
   return (
     <div className="game-card">
       <h2>{game.title}</h2>
       <p>{game.description}</p>
-      <p>${game.price}</p>
+      {/* Change the button to link to the game detail page */}
       <Link href={`/game/${game.id}`}>
-        <button>View</button>
+        <button>View Details</button>
       </Link>
     </div>
   );
-}
+};
+
+export default GameCard;

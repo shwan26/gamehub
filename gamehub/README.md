@@ -34,3 +34,35 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+Structure
+/gamehub
+├── /src
+│   ├── /pages
+│   │   ├── /api
+│   │   │   ├── /games
+│   │   │   │   ├── index.js
+│   │   │   │   └── [id].js
+│   │   │   ├── /users
+│   │   │   │   ├── index.js
+│   │   │   │   └── [id].js
+│   │   │   ├── /transactions
+│   │   │   │   ├── index.js
+│   │   │   │   └── [id].js
+│   │   ├── index.js (Store/Homepage)
+│   │   ├── /library.js
+│   │   ├── /cart.js
+│   │   ├── /profile.js
+│   │   └── /game/[id].js (Game Detail Page)
+│   ├── /components
+│   │   ├── GameCard.js
+│   │   ├── Cart.js
+│   │   ├── Transaction.js
+│   │   └── Header.js
+│   ├── /data
+│   │   ├── games.json
+│   │   ├── users.json
+│   │   └── transactions.json
+├── package.json
+└── ...
