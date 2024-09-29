@@ -1,7 +1,8 @@
 # GameHub for Full-Stack CRUD App.
 
-Shwan Myat Nay Chi
-Min Thuka
+6530187 Shwan Myat Nay Chi 
+
+6530181 Min Thuka 
 
 ## Getting Started
 
