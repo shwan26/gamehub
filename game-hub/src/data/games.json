@@ -1,38 +1,37 @@
 [
-    {
-      "id": 1,
-      "title": "Black Myth: Wukong",
-      "description": "A story of the legendary Sun Wukong after his Journey to the West.",
-      "price": 59.99,
-      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202405/2117/bd406f42e9352fdb398efcf21a4ffe575b2306ac40089d21.png"
-    },
-    {
-      "id": 2,
-      "title": "Game Two",
-      "description": "Description for game two.",
-      "price": 29.99,
-      "image": "https://cdn1.epicgames.com/spt-assets/175e781d820144ce966f1c1942b64b57/dragon-age-inquisition-game-of-the-year-edition-1y6qm.jpg"
-    },
-    {
-      "id": 3,
-      "title": "Game Three",
-      "description": "Description for game three.",
-      "price": 39.99,
-      "image": "/assets/game3.png"
-    },
-    {
-      "id": 4,
-      "title": "Game Four",
-      "description": "Description for game four.",
-      "price": 49.99,
-      "image": "/assets/game4.png"
-    },
-    {
-      "id": 5,
-      "title": "Game Five",
-      "description": "Description for game five.",
-      "price": 59.99,
-      "image": "/assets/game5.png"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Black Myth: Wukong",
+    "description": "A story of the legendary Sun Wukong after his Journey to the West.",
+    "price": 59.99,
+    "image": "https://image.api.playstation.com/vulcan/ap/rnd/202405/2117/bd406f42e9352fdb398efcf21a4ffe575b2306ac40089d21.png"
+  },
+  {
+    "id": 2,
+    "title": "Game Two",
+    "description": "Description for game two.",
+    "price": 29.99,
+    "image": "https://cdn1.epicgames.com/spt-assets/175e781d820144ce966f1c1942b64b57/dragon-age-inquisition-game-of-the-year-edition-1y6qm.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Game Three",
+    "description": "Description for game three.",
+    "price": 39.99,
+    "image": "/assets/game3.png"
+  },
+  {
+    "id": 4,
+    "title": "Game Four",
+    "description": "Description for game four.",
+    "price": 49.99,
+    "image": "/assets/game4.png"
+  },
+  {
+    "id": 5,
+    "title": "Game Five",
+    "description": "Description for game five.",
+    "price": 59.99,
+    "image": "/assets/game5.png"
+  }
+]
