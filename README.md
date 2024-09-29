@@ -6,7 +6,18 @@ Project name - GameHub
 
  Project description - Our project is for the gamer who want to play the game in easy way with user friendly application . We make our projects base on real game launcher named EPIC Game Launcher . We maily have 5 pages and home , library , cart , profile and transaction .We can view game detail . We can add games to our cart .If we make a payment , the game will appear on the library and we can also remove it from the library .
 
-## Getting Started
+## Screenshots
+
+Here is a screenshot of the application:
+
+![Home Page](screenshot/HomePage.jpg)
+![Library Page](screenshot/Library.jpg)
+![Cart Page](screenshot/Cart.jpg)
+![Profile Page](screenshot/Profile.jpg)
+![Transaction History Page](screenshot/Transaction.jpg)
+![Transaction Page](screenshot/Transaction.jpg)
+![Game Detail Page](screenshot/GameDetail.jpg)
+
 
 
 # CRUD operation for User Data Model
