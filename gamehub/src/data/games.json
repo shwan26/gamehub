@@ -82,11 +82,5 @@
     "description": "Wandering the open world of Witcher and explore the things from them.",
     "price": 59.99,
     "image": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png"
-  },
-  {
-    "id": 1,
-    "title": "Sample Game",
-    "description": "This is a sample game description.",
-    "price": 29.99
   }
 ]
