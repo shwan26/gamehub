@@ -5,7 +5,6 @@ const Transaction = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [transactionGames, setTransactionGames] = useState([]); // Array to store games for the transaction
-  const [transactionSuccess, setTransactionSuccess] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,17 +28,17 @@ const Transaction = () => {
   const handleConfirmPayment = async () => {
     if (user) {
       // Check if the games are already in the user's library
-      const gamesAlreadyInLibrary = transactionGames.filter(game => 
-        user.library.includes(game.id)
+      const gamesNotInLibrary = transactionGames.filter(game => 
+        !user.library.includes(game.id)
       );
 
-      if (gamesAlreadyInLibrary.length > 0) {
-        alert("One or more games are already in your library.");
+      if (gamesNotInLibrary.length === 0) {
+        alert("You already own all these games.");
         return;
       }
 
-      // Update user's library
-      const updatedLibrary = [...user.library, ...transactionGames.map(game => game.id)];
+      // Update user's library with games not in library
+      const updatedLibrary = [...user.library, ...gamesNotInLibrary.map(game => game.id)];
 
       // Update users.json
       await fetch(`/api/users/1`, { // Adjust the user ID as needed
@@ -58,12 +57,24 @@ const Transaction = () => {
         },
         body: JSON.stringify({
           userId: user.id, // Assuming user object has an id
-          gameIds: transactionGames.map(game => game.id),
+          gameIds: gamesNotInLibrary.map(game => game.id),
           date: new Date().toISOString(),
         }),
       });
 
-      setTransactionSuccess(true);
+      // Remove games from user's cart
+      const updatedCart = user.cart.filter(gameId => 
+        !transactionGames.map(game => game.id).includes(gameId)
+      );
+
+      await fetch(`/api/users/1`, { // Adjust the user ID as needed
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cart: updatedCart }),
+      });
+
       alert("Payment confirmed! Games have been added to your library.");
       router.push('/library'); // Redirect to library page after confirmation
     }
