@@ -4,6 +4,12 @@ import path from 'path';
 const transactionsFilePath = path.join(process.cwd(), 'src/data/transactions.json');
 
 export default function handler(req, res) {
+  if (req.method === 'GET') {
+    // Get all transactions
+    const data = JSON.parse(fs.readFileSync(transactionsFilePath, 'utf8'));
+    return res.status(200).json(data);
+  }
+  
   if (req.method === 'POST') {
     // Add new transaction
     const newTransaction = req.body;
