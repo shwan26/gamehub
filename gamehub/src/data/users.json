@@ -3,7 +3,7 @@
     "id": 1,
     "username": "user1",
     "cart": [],
-    "library": [
-    ]
+    "library": [],
+    "name": "Jane Doe"
   }
 ]

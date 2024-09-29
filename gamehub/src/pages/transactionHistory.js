@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Header from '@/components/Header';
 
 const TransactionHistory = () => {
   const [transactions, setTransactions] = useState([]);
@@ -15,6 +16,7 @@ const TransactionHistory = () => {
 
   return (
     <div>
+      <Header /> {/* Add the Header component here */}
       <h1>Transaction History</h1>
       {transactions.length === 0 ? (
         <p>No transactions found.</p>

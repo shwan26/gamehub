@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import Header from '@/components/Header';
 const Cart = () => {
   const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
@@ -24,10 +24,37 @@ const Cart = () => {
     fetchUserData();
   }, []);
 
+  // Function to remove a game from the cart
+  const removeFromCart = async (gameId) => {
+    const updatedCart = user.cart.filter(id => id !== gameId); // Remove the game from the cart
+    setUser(prevUser => ({
+      ...prevUser,
+      cart: updatedCart
+    }));
+
+    // Update user's cart in the users.json file by sending a PUT request
+    const response = await fetch(`/api/users/1`, { // Adjust the user ID as needed
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        cart: updatedCart
+      }),
+    });
+
+    if (response.ok) {
+      setGames(prevGames => prevGames.filter(game => game.id !== gameId)); // Remove the game from the displayed list
+    } else {
+      console.error('Failed to update the cart');
+    }
+  };
+
   if (!user) return <p>Loading...</p>; // Loading state
 
   return (
     <div>
+      <Header /> {/* Add the Header component here */}
       <h1>Your Cart</h1>
       <div className="cart-list">
         {games.map(game => (
@@ -43,6 +70,8 @@ const Cart = () => {
             <Link href="/transaction">
               <button>Buy Now</button>
             </Link>
+            {/* "Remove" button to remove the game from the cart */}
+            <button onClick={() => removeFromCart(game.id)}>Remove</button>
           </div>
         ))}
       </div>
