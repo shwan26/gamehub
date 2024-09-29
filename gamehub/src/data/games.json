@@ -1,0 +1,86 @@
+[
+    {
+      "id": 1,
+      "title": "Black Myth: Wukong",
+      "description": "A story of the legendary Sun Wukong after his Journey to the West.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202405/2117/bd406f42e9352fdb398efcf21a4ffe575b2306ac40089d21.png"
+    },
+    {
+      "id": 2,
+      "title": "Game Two",
+      "description": "Description for game two.",
+      "price": 29.99,
+      "image": "https://cdn1.epicgames.com/spt-assets/175e781d820144ce966f1c1942b64b57/dragon-age-inquisition-game-of-the-year-edition-1y6qm.jpg"
+    },
+    {
+      "id": 3,
+      "title": "FC25",
+      "description": "Build your ultimate team to make your dream team.",
+      "price": 69.99,
+      "image": "https://assets.goal.com/images/v3/blt178d34156522b281/GOAL%20-%20Blank%20WEB%20-%20Facebook%20-%202024-07-17T151013.046.jpg?auto=webp&format=pjpg&width=3840&quality=60"
+    },
+    {
+      "id": 4,
+      "title": "Ghost of Tsushima",
+      "description": "Ghost of Tsushima is an action game set in feudal Japan. Player takes the role of Jin Sakai who is a Japanese Samurai.",
+      "price": 49.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxNvYmDfb8QFD.png"
+    },
+    {
+      "id": 5,
+      "title": "It Takes Two",
+      "description": "Play as the clashing couple Cody and May. Two humans turned into dolls by a magic spell.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202012/0815/0Xqi1LgRoEtJ5zlFprpd54Vu.png"
+    },
+    {
+      "id": 6,
+      "title": "Assassin's Creed: Brotherhood",
+      "description": "Play as an assassin to attack the enemies and prevent all of the men.",
+      "price": 59.99,
+      "image": "https://cdn2.unrealengine.com/ac2-gamename-store-landscape-2560x1440-2560x1440-aa944fa0e8c6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "God of War: Ragnarok",
+      "description": "Kratos and his son embark on a new journey to the 9 realms.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png"
+    },
+    {
+      "id": 8,
+      "title": "Mortal Kombat 1: The Beginning",
+      "description": "Liu Kang is making the world better with his power, and then Kronika has come to end the peace.",
+      "price": 59.99,
+      "image": "https://cdn1.epicgames.com/offer/fda0f2b4047f46ffb4e94d5595c1468e/EGS_MortalKombat1PremiumEdition_NetherRealmStudios_Editions_S1_2560x1440-43d47cfc125118b13b26cea9c80ae15c"
+    },
+    {
+      "id": 9,
+      "title": "Mortal Kombat 11: Ultimate Edition",
+      "description": "Unlock the new characters Melina, Terminator, and Rain.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0822/4WzxHtmjXV1dQpWqj1B6UAMk.jpg"
+    },
+    {
+      "id": 10,
+      "title": "UFC 5",
+      "description": "Play as the real UFC fighter and make your path better.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202309/0421/418704276d35ce02e8cb532c6ca3826cf866ad2ec66c0b17.png"
+    },
+    {
+      "id": 11,
+      "title": "Red Dead Redemption 2",
+      "description": "Play as a cowboy from the wild west named Arthur Morgan.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png"
+    },
+    {
+      "id": 12,
+      "title": "Witcher 3: Wild Hunt",
+      "description": "Wandering the open world of Witcher and explore the things from them.",
+      "price": 59.99,
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png"
+    }
+]
