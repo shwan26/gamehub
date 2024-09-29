@@ -1,8 +1,10 @@
 # GameHub for Full-Stack CRUD App.
+Project name - GameHub 
 
-6530187 Shwan Myat Nay Chi 
+ Shwan Myat Nay Chi(https://gamehub-hy96k1dl1-shwan26s-projects.vercel.app/) 
+ Min Thuka (https://gamehub-hy96k1dl1-shwan26s-projects.vercel.app/)
 
-6530181 Min Thuka 
+ Project description - Our project is for the gamer who want to play the game in easy way with user friendly application . We make our projects base on real game launcher named EPIC Game Launcher . We maily have 5 pages and home , library , cart , profile and transaction .We can view game detail . We can add games to our cart .If we make a payment , the game will appear on the library and we can also remove it from the library .
 
 ## Getting Started
 
