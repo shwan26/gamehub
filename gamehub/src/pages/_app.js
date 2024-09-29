@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { CartProvider } from '../context/CartContext';
 
 function MyApp({ Component, pageProps }) {

@@ -3,13 +3,20 @@ import Link from 'next/link';
 
 const GameCard = ({ game }) => {
   return (
-    <div className="game-card">
-      <h2>{game.title}</h2>
-      <p>{game.description}</p>
-      {/* Change the button to link to the game detail page */}
-      <Link href={`/game/${game.id}`}>
-        <button>View Details</button>
-      </Link>
+    <div className="card mb-4" style={{ width: '300px', height: '400px' }}>
+      <img 
+        src={game.image} 
+        className="card-img-top" 
+        alt={game.title} 
+        style={{ height: '200px', objectFit: 'cover' }} 
+      />
+      <div className="card-body d-flex flex-column" style={{ height: '200px' }}>
+        <h5 className="card-title">{game.title}</h5>
+        <p className="card-text flex-grow-1">{game.description}</p>
+        <Link href={`/game/${game.id}`} className="btn btn-primary mt-auto"> {/* mt-auto pushes the button to the bottom */}
+          View Details
+        </Link>
+      </div>
     </div>
   );
 };

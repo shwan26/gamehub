@@ -1,5 +1,7 @@
-# This is GameHub project for Full-Stack CRUD App.
+# GameHub for Full-Stack CRUD App.
 
+Shwan Myat Nay Chi
+Min Thuka
 
 ## Getting Started
 
@@ -18,8 +20,9 @@ curl -X GET http://localhost:3000/api/users/3
 # Update User
 curl -X PUT http://localhost:3000/api/users/3 -H "Content-Type: application/json" -d '{"id": 3, "name": "Jane Doe", "cart": [], "library": []}'
 
-## Delete User
-curl -X DELETE http://localhost:3000/api/users/3```
+# Delete User
+curl -X DELETE http://localhost:3000/api/users/3
+```
 
 # CRUD operation for User Data Model
 ```bash
@@ -33,7 +36,8 @@ curl -X POST http://localhost:3000/api/transactions -H "Content-Type: applicatio
 curl -X GET http://localhost:3000/api/transactions/1
 
 ## Delete Transaction
-curl -X DELETE http://localhost:3000/api/transactions/1```
+curl -X DELETE http://localhost:3000/api/transactions/1
+```
 
 # CRUD operation for User Data Model
 ```bash
@@ -50,5 +54,6 @@ curl -X GET http://localhost:3000/api/games/1
 curl -X PUT http://localhost:3000/api/games/1 -H "Content-Type: application/json" -d '{"id": 1, "title": "Updated Sample Game", "description": "This is an updated sample game description.", "price": 24.99}'
 
 # Delete Game
-curl -X DELETE http://localhost:3000/api/games/1```
+curl -X DELETE http://localhost:3000/api/games/1
+```
 

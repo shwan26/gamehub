@@ -23,7 +23,7 @@
   {
     "id": 4,
     "title": "Ghost of Tsushima",
-    "description": "Ghost of Tsushima is an action game set in feudal Japan. Player takes the role of Jin Sakai who is a Japanese Samurai.",
+    "description": "Ghost of Tsushima is an action game set in feudal Japan. Player takes the role of Jin Sakai.",
     "price": 49.99,
     "image": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxNvYmDfb8QFD.png"
   },
@@ -51,7 +51,7 @@
   {
     "id": 8,
     "title": "Mortal Kombat 1: The Beginning",
-    "description": "Liu Kang is making the world better with his power, and then Kronika has come to end the peace.",
+    "description": "Liu Kang is making the world better with his power.",
     "price": 59.99,
     "image": "https://cdn1.epicgames.com/offer/fda0f2b4047f46ffb4e94d5595c1468e/EGS_MortalKombat1PremiumEdition_NetherRealmStudios_Editions_S1_2560x1440-43d47cfc125118b13b26cea9c80ae15c"
   },

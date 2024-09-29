@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Header from '@/components/Header';
 
 const GameDetail = () => {
   const router = useRouter();
@@ -58,14 +59,38 @@ const GameDetail = () => {
 
   return (
     <div>
-      <h1>{game.title}</h1>
-      <p>{game.description}</p>
-      <p>Price: ${game.price}</p>
-      <p>Release Date: {game.releaseDate}</p>
-
-      <button onClick={handleAddToCart}>Add to Cart</button>
-      <button onClick={handleBuyNow}>Buy Now</button>
+      <Header />
+      <div className="row">
+        <div className="col-lg-6">
+          <img 
+            src={game.image} 
+            alt={game.title} 
+            className="img-fluid rounded shadow" 
+          />
+        </div>
+        <div className="col-lg-6 d-flex flex-column justify-content-center">
+          <h1 className="mb-3">{game.title}</h1>
+          <p>{game.description}</p>
+          <p><strong>Price:</strong> ${game.price}</p>
+          
+          <div className="mt-4">
+            <button 
+              onClick={handleAddToCart} 
+              className="btn btn-primary btn-lg me-3"
+            >
+              Add to Cart
+            </button>
+            <button 
+              onClick={handleBuyNow} 
+              className="btn btn-success btn-lg"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+
   );
 };
 

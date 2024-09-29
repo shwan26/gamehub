@@ -53,29 +53,48 @@ const Cart = () => {
   if (!user) return <p>Loading...</p>; // Loading state
 
   return (
-    <div>
-      <Header /> {/* Add the Header component here */}
-      <h1>Your Cart</h1>
-      <div className="cart-list">
-        {games.map(game => (
-          <div key={game.id} className="game-card">
-            <h2>{game.title}</h2>
-            <p>{game.description}</p>
-            <p>Price: ${game.price}</p>
-            {/* "View" button navigates to the game detail page */}
-            <Link href={`/game/${game.id}`}>
-              <button>View</button>
-            </Link>
-            {/* "Buy Now" button navigates to the transaction page */}
-            <Link href="/transaction">
-              <button>Buy Now</button>
-            </Link>
-            {/* "Remove" button to remove the game from the cart */}
-            <button onClick={() => removeFromCart(game.id)}>Remove</button>
+    <div >
+  <Header /> {/* Add the Header component here */}
+  <h1 className="text-center mb-4">Your Cart</h1>
+  <div className="row">
+    {games.map(game => (
+      <div key={game.id} className="col-md-4 mb-4 d-flex flex-column align-items-center">
+        <div className="card" style={{ width: '100%' }}>
+          {/* Game Image */}
+          <img 
+            src={game.image} 
+            alt={game.title} 
+            className="card-img-top img-fluid" 
+            style={{ objectFit: 'cover', height: '200px' }}
+          />
+          
+          <div className="card-body">
+            <h5 className="card-title">{game.title}</h5>
+            <p className="card-text">{game.description}</p>
+            <p className="card-text"><strong>Price: ${game.price}</strong></p>
+            
+            <div className="d-flex justify-content-between">
+              <Link href={`/game/${game.id}`}>
+                <button className="btn btn-primary">View</button>
+              </Link>
+              <Link href="/transaction">
+                <button className="btn btn-success">Buy Now</button>
+              </Link>
+            </div>
+            
+            <button 
+              className="btn btn-danger mt-2 w-100" 
+              onClick={() => removeFromCart(game.id)}
+            >
+              Remove
+            </button>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 

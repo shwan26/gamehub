@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import CartContext from '../context/CartContext';
 import Header from '@/components/Header';
+import GameCard from '@/components/GameCard';
 
 const Library = () => {
   const { cart } = useContext(CartContext);
@@ -44,18 +45,31 @@ const Library = () => {
 
   return (
     <div>
-      <Header /> {/* Add the Header component here */}
-      <h1>Your Library</h1>
-      <div className="library-list">
-        {library.map(game => (
-          <div key={game.id} className="game-item">
-            <h2>{game.title}</h2>
-            <p>{game.description}</p>
-            <button onClick={() => removeFromLibrary(game.id)}>Remove</button> {/* Add Remove Button */}
+  <Header />
+  <h1 className="text-center mb-4">Your Library</h1>
+  
+  <div className="row">
+    {library.map(game => (
+      <div key={game.id} className="col-md-4 mb-4">
+        <div className="card h-100">
+          <div className="card-body d-flex flex-column">
+            <h2 className="card-title">{game.title}</h2>
+            <p className="card-text">{game.description}</p>
+            <div className="mt-auto">
+              <button 
+                className="btn btn-danger w-100" 
+                onClick={() => removeFromLibrary(game.id)}
+              >
+                Remove
+              </button>
+            </div>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 

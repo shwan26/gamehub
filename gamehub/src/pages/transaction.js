@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Header from '@/components/Header';
 
 const Transaction = () => {
   const router = useRouter();
@@ -84,15 +85,33 @@ const Transaction = () => {
 
   return (
     <div>
-      <h1>Confirm Your Transaction</h1>
-      <h2>Games:</h2>
-      <ul>
+  <Header />
+  <h1 className="text-center mb-4">Confirm Your Transaction</h1>
+
+  <div className="card">
+    <div className="card-body">
+      <h2 className="card-title">Games:</h2>
+      <ul className="list-group mb-3">
         {transactionGames.map(game => (
-          <li key={game.id}>{game.title} - ${game.price}</li>
+          <li key={game.id} className="list-group-item d-flex justify-content-between align-items-center">
+            {game.title}
+            <span className="badge badge-primary badge-pill">${game.price}</span>
+          </li>
         ))}
       </ul>
-      <button onClick={handleConfirmPayment}>Confirm Payment</button>
+
+      <div className="text-center">
+        <button 
+          onClick={handleConfirmPayment} 
+          className="btn btn-success btn-lg w-100"
+        >
+          Confirm Payment
+        </button>
+      </div>
     </div>
+  </div>
+</div>
+
   );
 };
 
