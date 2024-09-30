@@ -1,7 +1,7 @@
 # GameHub for Full-Stack CRUD App.
 Project name - GameHub 
 
-Deploy here - https://gamehub-hy96k1dl1-shwan26s-projects.vercel.app/
+Deploy here - https://gamehub-shwan26s-projects.vercel.app/
 
 Shwan Myat Nay Chi (https://github.com/shwan26)
  
